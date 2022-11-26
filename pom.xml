@@ -26,6 +26,12 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.2.2</version>
         </dependency>
+<!--        mybatis-plus 可以简化数据库名 my-src == mySrc-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.2</version>
+        </dependency>
 
         <dependency>
             <groupId>com.mysql</groupId>
@@ -57,7 +63,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    //阿里仓库
+<!--    阿里仓库-->
     <repositories>
         <repository>
             <id>alimaven</id>

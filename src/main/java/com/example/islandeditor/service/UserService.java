@@ -16,7 +16,7 @@ public class UserService implements UserServiceImpl {
   @Override
   public User login(User user) {
     User user1 = mapperUser.login(user);
-    if(user.getUserName().equals(user1.getUserName())&&user.getPassword().equals(user1.getPassword())){
+    if(user1 != null){
       String token = TokenUtils.genToken("" + user1.getId(), user1.getPassword());
       user1.setToken(token);
       return user1;
@@ -28,13 +28,14 @@ public class UserService implements UserServiceImpl {
 
   @Override
   public Integer register(User user) {
-    String name = user.getUserName();
-    String password = user.getPassword();
-    //判断账号和密码是否格式正确
-    if(name.equals("")||password.equals("")){
+    //查询号码是否被注册
+    Integer containPhone = mapperUser.containPhone(user.getPhone());
+    //0为未注册 1为已经注册
+    if(containPhone == 0) {
+      mapperUser.register(user);
       return 0;
     }
-    return mapperUser.register(user);
+    return 1;
   }
 
   @Override
@@ -45,5 +46,26 @@ public class UserService implements UserServiceImpl {
   @Override
   public List<User> findAll() {
     return mapperUser.findAll();
+  }
+
+  @Override
+  public Integer containPhone(String phone) {
+    return mapperUser.containPhone(phone);
+  }
+
+  @Override
+  public Integer save(User user) {
+    //Id 为null时新增用户
+    if(user.getId()==null){
+      return mapperUser.save(user);
+    }else {
+      // 修改用户信息
+      return mapperUser.update(user);
+    }
+  }
+
+  @Override
+  public Integer delete(Integer id) {
+    return mapperUser.delete(id);
   }
 }

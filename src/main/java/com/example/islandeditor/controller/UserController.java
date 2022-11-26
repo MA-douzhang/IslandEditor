@@ -26,4 +26,14 @@ public class UserController {
   public User login(@RequestBody User user){
     return userService.login(user);
   }
+  //用户新增 或者用户信息更新
+  @PostMapping("/save")
+  public Integer save(@RequestBody User user){
+    return userService.save(user);
+  }
+  //删除
+  @DeleteMapping({"/{id}"})
+  public Integer delete(@PathVariable Integer id){
+    return userService.delete(id);
+  }
 }

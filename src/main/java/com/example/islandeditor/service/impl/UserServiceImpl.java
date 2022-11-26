@@ -10,4 +10,9 @@ public interface UserServiceImpl {
 
   User getById(Integer id);
   List<User> findAll();
+  Integer containPhone(String password);
+  Integer save(User user);
+  //新闻删除方法
+  Integer delete(Integer id);
+
 }

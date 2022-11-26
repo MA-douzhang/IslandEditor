@@ -18,8 +18,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(setBean2())
-      //ToDo 会拦截所有接口
-      .addPathPatterns("/**")
-      .excludePathPatterns("/user/login","/user/register","/file/**");
+            //ToDo 会拦截所有接口
+            .addPathPatterns("/**")
+            .excludePathPatterns("/user/login","/user/register","/file/**");
   }
 }
